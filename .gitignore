@@ -1,0 +1,46 @@
+## Apple seriously, comon
+._*
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Icon?
+Thumbs.db
+
+## Vim, you are no longer cool
+*~
+
+## JetBrains IDE configuration files
+.idea/
+
+## SASS/SCSS
+.sass-cache/
+
+## Bundler
+.gems/
+.bundle/
+
+## Bower
+bower_components/
+bower-components/
+components/
+
+### RhoMobile/Rhodes
+
+## build files
+bin/
+rhosimulator/
+/project/
+*.jar
+*.o
+
+## logs and symlinks
+rholog.txt
+rhologrhhrho
+rholog-*
+sim-*
+
+## RhoStudio (Eclipse)
+.metadata/
+.project

@@ -1,0 +1,3 @@
+[submodule "ruby-helpers"]
+	path = ruby-helpers
+	url = git@github.com:SteveBenner/ruby-helpers.git

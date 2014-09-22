@@ -1,3 +1,6 @@
 [submodule "ruby-helpers"]
 	path = ruby-helpers
-	url = git@github.com:SteveBenner/ruby-helpers.git
+	url = git@github-personal:SteveBenner/ruby-helpers.git
+[submodule "sass/mixins/flex"]
+  path = sass/mixins/flex
+  url = git@github-personal:SteveBenner/sass-flex-mixin.git

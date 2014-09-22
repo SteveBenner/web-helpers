@@ -4,7 +4,11 @@ ruby:
   ie_versions.last.prepend 'gt '
 
 doctype html
-- for ie_version in ie_versions
+- for ie_version in (6..9)
+	- version_string = 'if ' += "IE #{ie_version}".prepend case ie_version
+		when
+		else
+
   ' <!--[if #{ie_version}]><html class="no-js
 
 /[if lt IE 7]

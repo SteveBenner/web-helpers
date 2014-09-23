@@ -1,0 +1,38 @@
+doctype html
+== conditional_html_tags_for_ie_versions 6..9
+head
+  meta charset="utf-8"
+  meta http-equiv="X-UA-Compatible" content="IE=edge; chrome=1"
+  title = page_title
+  meta name="description" content=page_description
+  meta name="viewport" content="width=device-width, initial-scale=1"
+  / Normalize - front end standardization
+  = stylesheet_link_tag 'vendor/normalize'
+
+  / Website styles
+  = stylesheet_link_tag 'main'
+
+  / Modernizr - feature detection and polyfills
+  = javascript_include_tag 'vendor/modernizr'
+body
+  /[if lt IE 7]
+    p.browsehappy
+      | You are using an <strong>outdated</strong> browser. Please
+      | <a href="http://browsehappy.com/">Upgrade your browser to improve your experience!</a>
+  header
+
+  main
+
+  footer
+
+  / load scripts here
+
+  / Google Analytics tracking code (updated 2014-9-23)
+  javascript:
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create','#{google_analytics_key}','auto');ga('send','pageview');
+
+| </html>

@@ -1,24 +1,29 @@
-ruby:
-  ie_versions = (6..9).map { |v| v.to_s.prepend 'IE ' }
-  ie_versions.first.prepend 'lt '
-  ie_versions.last.prepend 'gt '
-
+/ This template produces an EXACT replica of the `index.html` file found in HTML5 Boilerplate v4.3.0
+/ The official distribution is located at: https://github.com/h5bp/html5-boilerplate/blob/v4.3.0/index.html
 doctype html
-- for ie_version in (6..9)
-	- version_string = 'if ' += "IE #{ie_version}".prepend case ie_version
-		when
-		else
+/ The min and max values of the version range actually represent all values below or above the limit
+- ie_versions = 6..9 # A minimum value of 6 for example, translates into 'less than 7'
+- for version in ie_versions
+  ruby:
+    html_class_str = (version+1..ie_versions.max).to_a.reverse.collect { |j| " lt-ie#{j}" }.join
+    html_tag       = %Q[      <html class="no-js#{html_class_str}">]
+    version_string = case version
+      when ie_versions.min then "lt IE #{version + 1}"
+      when ie_versions.max
+        html_tag.lstrip!.prepend('<!--> ').concat(' <!--')
+        "gt IE #{version - 1}"
+      else
+        html_tag.prepend('   ')
+        "IE #{version}"
+    end
+  / Note the use of interpolation within the HTML comment directive below. Though this feature is not
+  / officially documented, it works fine. IE conditional comments may NOT use interpolation, however.
+  /
+  / WARNING!!! Pay attention to your Slim settings for escaping HTML content; by default, a valid HTML
+  / string must be 'unescaped' by enclosing the interpolated content within an extra set of brackets.
+  /
+  /! [if #{version_string}]#{{html_tag}}<![endif]
 
-  ' <!--[if #{ie_version}]><html class="no-js
-
-/[if lt IE 7]
-  html.no-js.lt-ie9.lt-ie8.lt-ie7
-/[if IE 7]
-  html.no-js.lt-ie9.lt-ie8
-/[if IE 8]
-  html.no-js.lt-ie9
-/[if gt IE 8]
-  html.no-js
 head
   meta charset="utf-8"
   meta http-equiv="X-UA-Compatible" content="IE=edge"
@@ -26,17 +31,22 @@ head
   meta name="description" content=""
   meta name="viewport" content="width=device-width, initial-scale=1"
   '
+  = $/
   /! Place favicon.ico and apple-touch-icon.png in the root directory
   '
+  = $/
+
   link rel="stylesheet" href="css/normalize.css"
   link rel="stylesheet" href="css/main.css"
   script src="js/vendor/modernizr-2.6.2.min.js"
 body
-  /[if lt IE7]
+  /[if lt IE 7]
     p.browsehappy
-      ' You are using an <strong>outdated</strong> browser. Please
-      a href="http://browsehappy.com/" Upgrade your browser to improve your experience
+      | You are using an <strong>outdated</strong> browser. Please
+      | <a href="http://browsehappy.com/">Upgrade your browser to improve your experience.</a>
+  = $/
   '
+  = $/
   /! Add your site or application content here
   p Hello world! This is HTML5 Boilerplate.
   '
@@ -46,6 +56,7 @@ body
   script src="js/plugins.js"
   script src="js/main.js"
   '
+  = $/
   /! Google Analytics: change UA-XXXXX-X to be your site's ID.
   javascript:
     (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -54,5 +65,4 @@ body
     e.src='//www.google-analytics.com/analytics.js';
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X');ga('send','pageview');
-
-
+| </html>

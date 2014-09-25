@@ -5,9 +5,9 @@ I've crafted three different kinds of Slim template based on the `index.html` fi
 
 - #### Perfect replica of `index.html`
 
-    File(s) named `html5-boilerplate-<version>` compile to an HTML page **identical** to corresponding `index.html` in the tagged release branch of Boilerplate represented by `<version>`. So for instance, the output of [html5-boilerplate-4.0.3.slim](html5-boilerplate-4.0.3.slim) should lined up exactly with [the index file in dist. 4.3.0][2]. The goal of this template is to show how the Boilerplate `index` page might be reproduced ***down to the last minutiae*** using Slim*, while keeping code DRY, well-documented, and idiomatic.
+    File(s) named `html5-boilerplate-<version>` compile to an HTML page **identical** to corresponding `index.html` in the tagged release branch of Boilerplate represented by `<version>`. So for instance, the output of [html5-boilerplate-4.0.3.slim](html5-boilerplate-4.3.0.slim) should lined up exactly with [the index file in dist. 4.3.0][2]. The goal of this template is to show how the Boilerplate `index` page might be reproduced ***down to the last minutiae*** using Slim*, while keeping code DRY, well-documented, and idiomatic.
 
-    *\* The only exceptions are minor newline/indentation differences when rendered with `pretty` mode enabled, as well as a few forward-slashes placed at the end of tags automatically. But while Slim can't be configured finely enough to reproduce the `index` file in 100% actuality, it's really unnecessary considering that* ***HTML should be compressed for production anyway.***
+    ***\**** *The only exceptions are minor newline/indentation differences when rendered with `pretty` mode enabled, as well as a few forward-slashes placed at the end of tags automatically. But while Slim can't be configured finely enough to reproduce the `index` file in 100% actuality, it's really unnecessary considering that* ***HTML should be compressed for production anyway.***
     
 - #### Lean (otherwise known as Slim-Fast)
 

@@ -1,0 +1,16 @@
+/*=====================================================
+		Helpers for making conversions and calculations
+  =====================================================*/
+
+@function percent-to-dec($val)
+	@return $val / ($val * 0 + 1) / 100
+
+// strips the unit from a CSS value, returning just the number
+@function strip-unit($value)
+	@return $value / ($value * 0 + 1)
+
+// todo: test this
+@function px2rem($val, $fontsize: 16px)
+	$fontsize: if($base-font-size, $base-font-size, 16px)
+	// look for default val da
+	@return $val / $fontsize

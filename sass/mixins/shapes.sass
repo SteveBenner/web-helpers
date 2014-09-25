@@ -1,0 +1,22 @@
+=square($min, $norm, $max)
+	min-width: $min
+	width: $norm
+	max-width: $max
+	min-height: $min
+	height: $norm
+	max-height: $max
+
+=triangle($dir: "up", $size: 10px, $color: white, $offset: 1px)
+	position: relative
+	border: $size transparent solid
+	@if $dir == "top" or $dir == "up"
+		border-bottom-color: $color
+		top: 0 - $size + $offset
+	@else if $dir == "right" or $dir == "after"
+		border-left-color: $color
+	@else if $dir == "bottom" or $dir == "down"
+		border-top-color: $color
+		top: 0 - $offset
+		left: 0 - $size
+	@else if $dir == "left" or $dir == "before"
+		border-right-color: $color

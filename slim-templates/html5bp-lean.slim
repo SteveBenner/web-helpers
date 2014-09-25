@@ -1,62 +1,53 @@
+/ Copyright (C) 2014 Stephen C. Benner
+/
+/ This program is free software: you can redistribute it and/or modify
+/ it under the terms of the GNU General Public License as published by
+/ the Free Software Foundation, either version 3 of the License, or
+/ (at your option) any later version.
+/
+/ This program is distributed in the hope that it will be useful,
+/ but WITHOUT ANY WARRANTY; without even the implied warranty of
+/ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+/ GNU General Public License for more details.
+/
+/ You should have received a copy of the GNU General Public License
+/ along with this program. If not, see <http://www.gnu.org/licenses/>.
+/
+/ The license can be found within the root directory of this
+/ repository, in the file LICENSE.md
+/
 ruby:
-  # Generates multiple complete HTML tags based on HTML5 Boilerplate's IE conditional comment style
-  # @see https://github.com/h5bp/html5-boilerplate/blob/v4.3.0/doc/html.md#conditional-html-classes
-  #
-  # @note The output of this helper acts as a substitution for the initial HTML tag in your page,
-  #   but you must make sure to explicitly provide the closing HTML tag yourself.
-  # @note The output of this helper must be HTML escaped.
-  #
-  # @param  [Range] ie_versions A range of IE versions to generate conditional comments for
-  # @return [String] Newline-separated list of HTML tags, each wrapped in an IE conditional comment
-  #
-  def conditional_html_tags_for_ie_versions(ie_versions)
-    ie_versions.collect { |version|
-      html_class_str = (version+1..ie_versions.max).to_a.reverse.collect { |j| " lt-ie#{j}" }.join
-      html_tag       = %Q[<html class="no-js#{html_class_str}" lang="en">]
-      version_string = case version
-        when ie_versions.min then "lt IE #{version + 1}"
-        when ie_versions.max
-          html_tag.prepend('<!-->').concat('<!--')
-          "gt IE #{version - 1}"
-        else "IE #{version}"
-      end
-      %Q[<!--[if #{version_string}]#{html_tag}<![endif]-->]
-    }.join $/
-  end
-  # Data
   google_analytics_key = 'UA-XXXXXXXX-X' # your key may have more or less characters
   page_title           = ''
   page_description     = ''
 
 doctype html
-== conditional_html_tags_for_ie_versions 6..9
-head
-  meta charset="utf-8"
-  meta http-equiv="X-UA-Compatible" content="IE=edge; chrome=1"
-  title = page_title
-  meta name="description" content=page_description
-  meta name="viewport" content="width=device-width, initial-scale=1"
-  / load stylesheets here
-  / load preliminary scripts here
-body
-  /[if lt IE 7]
-    p.browsehappy
-      | You are using an <strong>outdated</strong> browser. Please
-      | <a href="http://browsehappy.com/">Upgrade your browser to improve your experience!</a>
-  header
+== conditional_html_tags_for_ie_versions 7..8, lang: 'en'
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge; chrome=1"
+    title = page_title
+    meta name="description" content=page_description
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    / load stylesheets here
+    / load preliminary scripts here
+  body
+    /[if lt IE 7]
+      p.browsehappy
+        | You are using an <strong>outdated</strong> browser. Please
+        | <a href="http://browsehappy.com/">Upgrade your browser to improve your experience!</a>
+    header
 
-  main
+    main
 
-  footer
+    footer
 
-  / load scripts here
+    / load main scripts here
 
-  / Google Analytics tracking code (updated 2014-10-23)
-  javascript:
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create','#{google_analytics_key}','auto');ga('send','pageview');
-
-| </html>
+    / Google Analytics tracking code (updated 2014-10-23)
+    javascript:
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create','#{google_analytics_key}','auto');ga('send','pageview');

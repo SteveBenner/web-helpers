@@ -18,7 +18,7 @@ I've crafted three different kinds of Slim template based on the `index.html` fi
     Serving as my main layout file for web projects, [html5bp-middleman][3] is of course designed for use with the [Middleman](http://middlemanapp.com/) framework. Though the code is easily compatible with other Ruby web frameworks, its reliance on specific helpers and features of Middleman make it highly opinionated, but also highly efficient for website construction. Notable differences include use of partials and `yield`.
 
 ### A note about the `HTML` tag and IE conditional comments
-In the templates you will note that I generate the HTML tag and IE conditional comments functionally, instead of manually writing out a line for each one. You might consider this a sign of someone who takes the 'DRY' concept too far, but aside from the fact I may indeed fit that criterion, and that Ruby is just downright ***fun*** to code in, there are some good reasons why this technique is beneficial for productivity, perhaps elegant even:
+In the templates you will note that [I generate the HTML tag and IE conditional comments functionally][6], instead of manually writing out a line for each one. You might consider this a sign of someone who takes the 'DRY' concept too far, but aside from the fact I may indeed fit that criterion, and that Ruby is just downright ***fun*** to code in, there are some good reasons why this technique is beneficial for productivity, perhaps elegant even:
 
 1. **Abstraction:** it's not just about DRY'ing out a few measly lines of HTML, but rather taking advantage of the power offered by abstraction. This whole compatibility-hack-in-disguise can be considered a case of 'single responsibility', so it seems ideal to handle it via a helper function. Even though it's not much code, when multiplied by real-world demands of large-scale development or even just widespread usage of the same file, an abstracted feature is ***far*** superior.
 2. **Maintainability:** The original code itself adds significant complexity; it raises the technical requirements of the developer, and introduces more opportunity for human error. It is also very likely subject to change--I can't imagine Microsoft ever slowing their drive to churn out more versions of IE (**barf**)...
@@ -29,3 +29,4 @@ In the templates you will note that I generate the HTML tag and IE conditional c
 [3]: https://gist.github.com/SteveBenner/fc78f445a9a5523d3d56
 [4]: https://github.com/slim-template/slim#helpers-capturing-and-includes
 [5]: https://github.com/h5bp/html5-boilerplate/blob/v4.3.0/index.html
+[6]: https://gist.github.com/SteveBenner/a71f41e175f135b7d69b

@@ -1,6 +1,6 @@
 /*=====================================================
-    Helpers for manipulating element dimensions
-  =====================================================*/
+		Helpers for manipulating element dimensions
+	=====================================================*/
 
 // shorthand for width properties
 =widths($val, $properties: min-width width max-width)
@@ -21,12 +21,6 @@
 		height: auto
 	@else
 		height: $height * $mod
-
-=fontsize($size: 16, $line: $size * 1.5)
-	font-size: $size + px
-	line-height: $line + px
-	font-size: $size / 10 + rem
-	line-height: $line / 10 + rem
 
 =icon-size($size, $flex: null)
 	@if $flex

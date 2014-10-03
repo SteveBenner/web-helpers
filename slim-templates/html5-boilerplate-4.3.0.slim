@@ -25,7 +25,7 @@
 /
 doctype html
 / The min and max values of the version range actually represent all values below or above the limit
-- ie_versions = 6..9 # A minimum value of 6 for example, translates into 'less than 7'
+- ie_versions = 7..10 # A minimum value of 6 for example, translates into 'less than 7'
 - for version in ie_versions
   ruby:
     html_class_str = (version+1..ie_versions.max).to_a.reverse.collect { |j| " lt-ie#{j}" }.join

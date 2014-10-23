@@ -1,0 +1,38 @@
+/ This partial provides integration for Disqus comments in your site
+/
+/ @see https://help.disqus.com/customer/portal/articles/1104788-web-integration Official web integration docs
+/ @see https://help.disqus.com/customer/portal/articles/472098-javascript-configuration-variables JS configuration docs
+/
+/ @local [Object] disqus An object with properties representing the Disqus Javascript configuration variables
+/ @property disqus [String] shortname Unique identifier for your forum website, registered on Disqus.com
+/ @property disqus [String] identifier A String or Integer value which identifies the current web page thread
+/ @property disqus [String] title Title of the current page; defaults to value of HTML `title` element
+/ @property disqus [String] url URL of the current page; defaults to `window.location.href`
+/ @property disqus [String] category_id Category to use for current page; defaults to the 'General' category
+/
+/ Javascript variables are generated dynamically from properties of the `disqus` object
+/
+ruby:
+  def define_vars(*args)
+    prefix = args.first.respond_to?(:each) ? nil : args.shift
+    suffix = args.respond_to?(:each) ? nil : args.shift
+    'var ' + args[0].collect { |key, val|
+      "#{prefix}#{key}#{suffix}=#{(val.is_a?(String) ? "'#{val}'" : val)}"
+    }.join(',') + ';'
+  end
+
+#disqus_thread
+javascript:
+  #{{define_vars 'disqus_', shortname: 'site', identifier: '12', title: 'mysite', url: '2014/post', category_id: '2'}}
+  dsq       = document.createElement('script');
+  dsq.type  = 'text/javascript';
+  dsq.async = true;
+  dsq.src   = "//" + disqus_shortname + ".disqus.com/embed.js";
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+noscript
+	' Please enable JavaScript to view the
+	a href="http://disqus.com/?ref_noscript" comments powered by Disqus.
+a.dsq-brlink href="http://disqus.com"
+  ' comments powered by
+  span.logo-disqus Disqus

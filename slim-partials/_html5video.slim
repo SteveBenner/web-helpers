@@ -1,0 +1,30 @@
+/ Generate an HTML5 video tag with embedded Flash fallback
+/ @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video HTML5 video tag spec
+/
+/ @local [Hash] video Attribute hash for the `video` tag
+/ @option video [Integer] :width  (320) Width of the video tag in pixels
+/ @option video [Integer] :height (240) Height of the video tag in pixels
+/
+/ @local [Hash] src Mapping of source file types to URLs for source files
+/ @option src [String] :mp4 URL of an MP4 source file for the video
+/ @option src [String] :webm URL of a WebM source file for the video
+/ @option src [String] :ogg URL of an Ogg source file for the video
+/
+/ @local [Hash] flash Data for a Flash object
+/ @option flash [String] :src URL of a flash video to supply as a fallback
+/ @option flash [String] :swf URL of a flash video to supply as a fallback
+/ @option flash [Hash]  :vars Additional data for the Flash object, formatted as URL params
+/
+/ @example For example usage, see {https://gist.github.com/SteveBenner/9029034 this gist}
+/
+/ Slims 'splat' attribute parsing lets us neatly convert a Hash into HTML attributes
+/
+video*{ width: 320, height: 240, class: 'video-player' }.update(video)
+  - src.each do |format, file|
+    source type="video/#{format}" src=file
+    - if defined?(flash)
+      object*{ width: video[:width] || 320, height: video[:height] || 240,
+               type: 'application/x-shockwave-flash', data: flash[:swf] }
+        param name="movie" value=flash[:swf]
+        - if flash[:vars]
+          param name="flashvars" value=(flash[:vars].collect { |k, v| "#{k}=#{v}" }.join('&'))

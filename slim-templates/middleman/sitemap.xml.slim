@@ -1,0 +1,13 @@
+/ This template produces an XML 'sitemap' file for your Middleman website
+/
+/ @see http://middlemanapp.com/advanced/sitemap/ Middleman sitemap documentation
+/
+- pages = sitemap.resources.find_all{|p| p.source_file.match(/\.html/) }
+doctype xml
+  urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  - pages.each do |p|
+    url
+      loc "http://www.YOUR_WEBSITE_URL/#{p.destination_path.gsub('/index.html','')}"
+      lastmod    = Date.today.to_time.iso8601
+      changefreq = p.data.changefreq || 'weekly'
+      priority   = p.data.priority   || '0.5'

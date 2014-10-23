@@ -1,6 +1,7 @@
 # Slim Templates
+I use Slim exclusively for HTML development, and I build most of my websites using [Middleman](http://middlemanapp.com/). The `middleman` subdirectory contains templates dedicated exclusively for use within this framework (although they are not necessarily incompatible with others).
 
-### HTML5 Boilerplate
+## HTML5 Boilerplate
 I've crafted three different kinds of Slim template based on the `index.html` file used in [HTML5 Boilerplate][4]:
 
 - #### Perfect replica of `index.html`
@@ -23,6 +24,12 @@ In the templates you will note that [I generate the HTML tag and IE conditional 
 1. **Abstraction:** it's not just about DRY'ing out a few measly lines of HTML, but rather taking advantage of the power offered by abstraction. This whole compatibility-hack-in-disguise can be considered a case of 'single responsibility', so it seems ideal to handle it via a helper function. Even though it's not much code, when multiplied by real-world demands of large-scale development or even just widespread usage of the same file, an abstracted feature is ***far*** superior.
 2. **Maintainability:** The original code itself adds significant complexity; it raises the technical requirements of the developer, and introduces more opportunity for human error. It is also very likely subject to change--I can't imagine Microsoft ever slowing their drive to churn out more versions of IE (**barf**)...
 3. **Unerstandability:** Ruby shines because it optimizes for developer comprehension, and this abstraction is a perfect illustration of why and how. The reason we're using Slim in the first place is because why close tags? Sadly, every existing Slim template I've seen of Boilerplate's `index.html` is uglified with a trailing `| <html>` text line at the bottom, due to the fact that we wish to surround **only** the opening `<html>` tag with the IE comments, *and Slim doesn't work that way!* Except the thing is, **it does**. [As explained in the official docs][4], one can pass a Slim block to a helper function for arbitrary modification, which means we can write our HTML page as normal in Slim, and simply pass it to the helper as a block. No ugly code, no bad technique--all we do is swap out the regular `html` tag for our helper, and the complex alterations going on are now **basically invisible**! That's what good abstraction is all about.
+
+---
+**TODO:**
+
+- create sample output for `middleman/sitemap.xml.slim` (and update gist!)
+
 
 [1]: https://gist.github.com/SteveBenner/b532b6fd8bf9fa8114c3
 [2]: https://gist.github.com/SteveBenner/5df58e30de5165a44822

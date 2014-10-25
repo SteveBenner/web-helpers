@@ -1,1 +1,13 @@
-/ Coderwall implementation
+/ This partial allows you to render the Coderwall badges of specified user
+/
+ruby:
+  username    = 'your-coderwall-username'
+  orientation = 'horizontal' # can be 'vertical' or 'horizontal'
+
+/ Place the following tags in the HEAD section of your web page (omit jQuery if already present, of course)
+link href="http://coderwall.com/stylesheets/jquery.coderwall.css" media="all" rel="stylesheet" type="text/css"
+script src="https://code.jquery.com/jquery-2.1.1.min.js"
+script src="http://coderwall.com/javascripts/jquery.coderwall.js"
+
+/ Any arbitrary element can act as a container for rendering the badges in, as long as it has these attributes:
+/ .coderwall data-coderwall-username=username data-coderwall-orientation=orientation

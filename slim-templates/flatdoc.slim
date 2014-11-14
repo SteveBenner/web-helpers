@@ -1,0 +1,66 @@
+/ This is a Slim recreation of the Flatdoc example template provided here:
+/ https://raw.githubusercontent.com/rstacruz/flatdoc/gh-pages/templates/template.html
+/
+/ Flatdoc is a simple way to generate a documentation page from Markdown
+/ More info is available on their website: http://ricostacruz.com/flatdoc/
+/
+/ The main alterations noticeable in this version of the template are:
+/ - Emphasis is placed on using variables and interpolation often, key advantages of Slim
+/ - The GitHub button links have been replaced with a Web Component version, which I
+    find to be superior to using an iFrame. Just uncomment the original code to revert.
+
+ruby:
+  FLATDOC_SOURCE = 'http://rstacruz.github.io/flatdoc/v/0.8.6'
+  project_title  = 'Your Project'
+  project_desc   = 'Your Project description'
+  user = 'your-github-username'
+  repo = 'your-repo-name'
+
+doctype html
+head
+  meta charset='utf-8'
+  meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+  meta name="viewport" content="width=device-width"
+
+  title = project_title
+
+  / Flatdoc
+  script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+  script src="#{FLATDOC_SOURCE}/legacy.js"
+  script src="#{FLATDOC_SOURCE}/flatdoc.js"
+
+  / Flatdoc theme
+  link rel="stylesheet" href="#{FLATDOC_SOURCE}/theme-white/style.css"
+  script src="#{FLATDOC_SOURCE}/theme-white/script.js"
+
+  / github-button web component: http://component.kitchen/components/github-button
+  script src="bower_components/platform/platform.js"
+  link rel="import" href="bower_components/github-button/dist/github-button.html"
+
+  meta content=project_title property="og:title"
+  meta content=project_desc name="description"
+
+  / Note: I prefer to use CoffeeScript over JS, but in Slim you can't interpolation
+  / with embedded CoffeeScript so it doesn't make for good single-file examples. In
+  / a real development environment, JS variables would ideally be defined within a
+  / single file loaded in the HEAD section of the document. But this works fine too!
+  javascript:
+    Flatdoc.run({fetcher: Flatdoc.github('#{user}/#{repo}')});
+
+body role="flatdoc"
+  .header
+    .left
+      h1 = title
+      ul
+        li: github-button user=user repo=repo type="fork"
+        / li: a href="https://github.com/#{user}/#{repo}" View on GitHub
+        / li: a href="https://github.com/#{user}/#{repo}/issues" Issues
+    .right
+      github-button user=user repo=repo
+      /iframe [src="http://ghbtns.com/github-btn.html?user=#{user}&amp;repo=#{repo}&amp;type=watch&amp;count=true"
+      /				allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"]
+
+  .content-root
+    .menubar
+      .menu.section role="flatdoc-menu"
+    .content role="flatdoc-content"

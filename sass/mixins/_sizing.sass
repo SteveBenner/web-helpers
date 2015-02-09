@@ -1,34 +1,34 @@
 /*=====================================================
-		Helpers for manipulating element dimensions
-	=====================================================*/
+    Helpers for manipulating element dimensions
+  =====================================================*/
 
 // shorthand for width properties
 =widths($val, $properties: min-width width max-width)
-	@each $p in $properties
-		#{$p}: $val
+  @each $p in $properties
+    #{$p}: $val
 
 // shorthand for height properties
 =heights($val, $properties: min-height height max-height)
-	@each $p in $properties
-		#{$p}: $val
+  @each $p in $properties
+    #{$p}: $val
 
 =imgsize($width, $height: $width, $mod: 1)
-	@if $width == auto
-		width: auto
-	@else
-		width: $width * $mod
-	@if $height == auto
-		height: auto
-	@else
-		height: $height * $mod
+  @if $width == auto
+    width: auto
+  @else
+    width: $width * $mod
+  @if $height == auto
+    height: auto
+  @else
+    height: $height * $mod
 
 =icon-size($size, $flex: null)
-	@if $flex
-		+flex-basis($size)
-	line-height: $size
-	width: $size
-	height: $size
-	&::before
-		font-size: $size
-		width: $size
-		height: $size
+  @if $flex
+    +flex-basis($size)
+  line-height: $size
+  width: $size
+  height: $size
+  &::before
+    font-size: $size
+    width: $size
+    height: $size

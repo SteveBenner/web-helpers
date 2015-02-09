@@ -1,6 +1,5 @@
 # Simplistic mobile device detection function
 # inspired by: http://www.abeautifulsite.net/detecting-mobile-devices-with-javascript/
-#
 
 isMobile = [
   {name: 'Android', regex: /Android/i}
@@ -20,8 +19,3 @@ isMobile.any = ->
   isMobile.iOS() ||
   isMobile.Opera() ||
   isMobile.Windows()
-
-console.log 'fk yea' if isMobile.any()
-#for device in isMobile
-#  isMobile[device.name] = -> navigator.userAgent.match device.regex
-

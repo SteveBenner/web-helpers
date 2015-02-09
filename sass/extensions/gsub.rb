@@ -1,4 +1,4 @@
-# TODO: DOES NOT WORK, FIX THIS
+# todo: DOES NOT WORK, FIX THIS
 module Sass::Script::Functions
 	# Simple string substitution in SASS via String#gsub
 	#

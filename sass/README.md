@@ -1,8 +1,8 @@
 # Sass
 This is my personal library of code resources for Sass development.
 
-## Style
-**Note:** the particular styles used here are not a recommendation for production code, but rather based on convenience for development.
+## Style Guide
+**Note:** for development only, not necessarily recommended for production code.
 
-- **Indentation:** 2 spaces wide, using the ***TAB*** character.
+- **Indentation:** 2 spaces wide, using ***SPACES***.
 - **Comments:** Sass-only comments, i.e. `//`, not `/*..*/`

@@ -1,6 +1,6 @@
-/*=====================================================
-    Helpers for manipulating element dimensions
-  =====================================================*/
+// ====================================================
+//  Helpers for manipulating element dimensions
+// ====================================================
 
 // shorthand for width properties
 =widths($val, $properties: min-width width max-width)
@@ -12,6 +12,7 @@
   @each $p in $properties
     #{$p}: $val
 
+// simplified way to declare image size with one or both dimensions, takes an optional ratio
 =imgsize($width, $height: $width, $mod: 1)
   @if $width == auto
     width: auto

@@ -1,30 +1,27 @@
-/ This partial provides integration for Disqus comments in your site
+/ Integrate Disqus comments into your site with this widget (adheres to official API and config spec)
 /
 / @see https://help.disqus.com/customer/portal/articles/1104788-web-integration Official web integration docs
-/ @see https://help.disqus.com/customer/portal/articles/472098-javascript-configuration-variables JS configuration docs
+/ @see https://help.disqus.com/customer/portal/articles/472098-javascript-configuration-variables Configuration docs
 /
-/ @local [Object] disqus An object with properties representing the Disqus Javascript configuration variables
-/ @property disqus [String] shortname Unique identifier for your forum website, registered on Disqus.com
-/ @property disqus [String] identifier A String or Integer value which identifies the current web page thread
-/ @property disqus [String] title Title of the current page; defaults to value of HTML `title` element
-/ @property disqus [String] url URL of the current page; defaults to `window.location.href`
-/ @property disqus [String] category_id Category to use for current page; defaults to the 'General' category
+/ @local [Hash{Symbol => String}] disqus Key/value pairs corresponding to the Disqus JS configuration variables
+/ @option disqus [String] shortname Unique identifier for your forum website registered on Disqus.com (REQUIRED)
+/ @option disqus [String] identifier A String or Integer value which identifies the current web page thread
+/ @option disqus [String] title Title of the current page; defaults to value of HTML `title` element
+/ @option disqus [String] url URL of the current page; defaults to `window.location.href`
+/ @option disqus [String] category_id Category to use for current page; defaults to the 'General' category
 /
-ruby:
-  require 'ostruct'
-  disqus = OpenStruct.new shortname: 'site', identifier: '12', title: 'mysite', url: '2014/post', category_id: '2'
+
+/ It's a simple matter to generate a string of JavaScript variable definitions from our data object...
+/ We can then drop it right into the JavaScript code using Slim's interpolation support
+- js_config_variables = disqus.collect { |k,v| "disqus_#{k}=\"#{v}\"" }.join ','
 
 #disqus_thread
 javascript:
-  var disqus_shortname = "#{disqus.shortname}",
-    disqus_identifier = "#{disqus.identifier}",
-    disqus_title = "#{disqus.title}",
-    disqus_url = "#{disqus.url}",
-    disqus_category_id = "#{disqus.category_id}";
+  var #{{js_config_variables}};
   dsq       = document.createElement('script');
-  dsq.type  = 'text/javascript';
+  dsq.type  = "text/javascript";
   dsq.async = true;
-  dsq.src   = "//" + disqus_shortname + ".disqus.com/embed.js";
+  dsq.src   = "//#{{disqus[:shortname]}}.disqus.com/embed.js";
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 
 noscript

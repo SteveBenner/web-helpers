@@ -1,6 +1,10 @@
-/*=====================================================
-    Some graphical or visual effects
-  =====================================================*/
+// Some graphical or visual effects
 
+// UI element appearance
 =box-emboss($opacity, $opacity2)
   +box-shadow(white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0)
+
+// Debugging
+$debug-colors: (rgba(165, 255, 252, 0.20), rgba(93, 255, 133, 0.20), rgba(250, 255, 120, 0.20), rgba(208, 138, 255, 0.20))
+=debug($color: 1)
+  background-color: nth($debug-colors, $color)

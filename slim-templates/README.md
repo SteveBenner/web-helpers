@@ -28,12 +28,13 @@ In the templates you will note that [I generate the HTML tag and IE conditional 
 ---
 **TODO:**
 
+- update HTML5 Boilerplate templates
 - create sample output for `middleman/sitemap.xml.slim` (and update gist!)
 
 
 [1]: https://gist.github.com/SteveBenner/b532b6fd8bf9fa8114c3
 [2]: https://gist.github.com/SteveBenner/5df58e30de5165a44822
-[3]: https://gist.github.com/SteveBenner/fc78f445a9a5523d3d56
+[3]: https://html5boilerplate.com/
 [4]: https://github.com/slim-template/slim#helpers-capturing-and-includes
 [5]: https://github.com/h5bp/html5-boilerplate/blob/v4.3.0/index.html
 [6]: https://gist.github.com/SteveBenner/a71f41e175f135b7d69b

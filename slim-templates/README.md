@@ -2,7 +2,7 @@
 I use Slim exclusively for HTML development, and I build most of my websites using [Middleman](http://middlemanapp.com/). The `middleman` subdirectory contains templates dedicated exclusively for use within this framework (although they are not necessarily incompatible with others).
 
 ## HTML5 Boilerplate
-I've crafted three different kinds of Slim template based on the `index.html` file used in [HTML5 Boilerplate][4]:
+I've crafted three different kinds of Slim template based on the `index.html` file used in [HTML5 Boilerplate][]:
 
 - #### Perfect replica of `index.html`
 
@@ -34,7 +34,8 @@ In the templates you will note that [I generate the HTML tag and IE conditional 
 
 [1]: https://gist.github.com/SteveBenner/b532b6fd8bf9fa8114c3
 [2]: https://gist.github.com/SteveBenner/5df58e30de5165a44822
-[3]: https://html5boilerplate.com/
+[3]: https://gist.github.com/SteveBenner/fc78f445a9a5523d3d56
 [4]: https://github.com/slim-template/slim#helpers-capturing-and-includes
 [5]: https://github.com/h5bp/html5-boilerplate/blob/v4.3.0/index.html
 [6]: https://gist.github.com/SteveBenner/a71f41e175f135b7d69b
+[HTML5 Boilerplate]: https://html5boilerplate.com/

@@ -1,0 +1,29 @@
+/ This is a humble web design tool inspired by the eyedropper functionality in Google Chrome's
+  color picker interface (part of the dev tools panel) which allows one to choose any pixel of
+  the current web page to set as a color property's value. Though hugely convenient for visual
+  design, color selection being limited to the context of the page leaves much to be desired.
+
+/ This partial solves the limitation by affixing an unobtrusive panel to your page to act as
+  a makeshift color palette to use in conjunction with the eyedropper. The panel is populated
+  with small squares representing a list of colors passed into the partial via local. Viola!
+
+/ @local [Array<String>] colors List of values valid for `background-color` CSS property
+  @local [Fixnum] square_size Width of the generated squares, in pixels (default: 20)
+  @note This partial should be inserted as a child of the <body> element.
+
+ruby:
+  square_size ||= '20px'
+  colors ||= []
+
+#color-palette
+  .colorbox
+    - for color_val in colors
+      div style="background-color: #{color_val}"
+  style == ".colorbox > div { width: #{square_size}; height: #{square_size}; }"
+  sass:
+    #color-palette
+      position: fixed
+      bottom: 0
+      width: 60%
+    .colorbox
+      margin: 4px
